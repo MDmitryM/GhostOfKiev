@@ -1,18 +1,94 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Moving : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //////////////////////////////
+    ///Position var section
+    [SerializeField] private InputAction inputAction;
+
+    private float _horizontalInput;
+    private float _verticalInput;
+
+    [SerializeField ]private float _movingSpeed;
+
+    private float _offsetXPos;
+    private float _offsetYPos;
+
+    private float _newXPos;
+    private float _newYPos;
+
+    private float _clampedXPos;
+    private float _clampedYPos;
+
+
+    [SerializeField] private float _xMax;
+    [SerializeField] private float _xMin;
+
+    [SerializeField] private float _yMax;
+    [SerializeField] private float _yMin;
+
+    //////////////////////////////
+    ///Roatation var section
+
+    private float _pitch;
+    private float _yaw;
+    private float _roll;
+
+    private void OnEnable()
     {
-        
+        inputAction.Enable();
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        _movingSpeed = 15f;
+
+        _xMax = 7.60f;
+        _xMin = -7.60f;
+        _yMax = 6.9f;
+        _yMin = -2.6f;
+
+
+        _pitch = 0f;
+        _yaw = 0f;
+        _roll = 0f;
+    }
+
     void Update()
     {
-        
+        ShipMoving();
     }
+
+    private void OnDisable()
+    {
+        inputAction.Disable();
+    }
+
+    private void ShipMoving()
+    {
+        _horizontalInput = inputAction.ReadValue<Vector2>().x;
+        _verticalInput = inputAction.ReadValue<Vector2>().y;
+
+        _offsetXPos = _horizontalInput * _movingSpeed * Time.deltaTime;
+        _offsetYPos = _verticalInput * _movingSpeed * Time.deltaTime;
+
+        _newXPos = transform.localPosition.x + _offsetXPos;
+        _newYPos = transform.localPosition.y + _offsetYPos;
+
+        _clampedXPos = Mathf.Clamp(_newXPos, _xMin, _xMax);
+        _clampedYPos = Mathf.Clamp(_newYPos, _yMin, _yMax);
+
+        transform.localPosition = new Vector3(_clampedXPos, _clampedYPos, 0);
+
+        //Debug.Log($"Horizontal = {_horizontalMoving} and Vertical = {_verticalMoving}");
+    }
+
+    public void Rotation() 
+    {
+        transform.localRotation = Quaternion.Euler(_pitch, _yaw, _roll);
+    }
+
 }

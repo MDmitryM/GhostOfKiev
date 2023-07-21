@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4633660960354252}
   - component: {fileID: 33338404105739904}
   - component: {fileID: 23361906180098298}
+  - component: {fileID: 473549317567823027}
   m_Layer: 0
   m_Name: StarSparrow4
   m_TagString: Untagged
@@ -84,6 +85,67 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &473549317567823027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819210613620524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0608251b51f61043b9e4a209b9c9047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputAction:
+    m_Name: Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 475dc253-e075-4004-9ea8-cafa47136475
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: c2ce230a-8cab-4a46-81ea-b7ef9729aaf0
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 8a548d72-1b85-41d1-a348-b8fa1a6a09c1
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 51be6d56-1a5c-47ce-bf25-7267eafda2ee
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 31d3cdd6-979e-42eb-b9fa-3884d1f88aff
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 19b821a5-3b31-457f-affd-a444ff998f45
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    m_Flags: 0
 --- !u!1 &191611089748557440
 GameObject:
   m_ObjectHideFlags: 0
