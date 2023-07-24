@@ -37,6 +37,12 @@ public class Moving : MonoBehaviour
     private float _yaw;
     private float _roll;
 
+    private float _controlPitchFactor = -15f;
+    private float _positionPitchFactor = -5f;
+
+    private float _positionYawFactor = 2f;
+    private float _controlRollFactor = -20f;
+
     private void OnEnable()
     {
         inputAction.Enable();
@@ -60,6 +66,7 @@ public class Moving : MonoBehaviour
     void Update()
     {
         ShipMoving();
+        ShipRotating();
     }
 
     private void OnDisable()
@@ -86,8 +93,15 @@ public class Moving : MonoBehaviour
         //Debug.Log($"Horizontal = {_horizontalMoving} and Vertical = {_verticalMoving}");
     }
 
-    public void Rotation() 
+    public void ShipRotating() 
     {
+        _pitch = transform.localPosition.y * _positionPitchFactor 
+        + _verticalInput * _controlPitchFactor;
+
+        _yaw = transform.localPosition.x * _positionYawFactor;
+                
+        _roll = _horizontalInput * _controlRollFactor;
+
         transform.localRotation = Quaternion.Euler(_pitch, _yaw, _roll);
     }
 
